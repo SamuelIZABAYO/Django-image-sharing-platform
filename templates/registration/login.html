@@ -21,7 +21,11 @@
         {{ form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}">
-        <p><input type="submit" value="Log-in"></p>
+        <p><input type="submit" value="Log in"></p>
+        <p>Please, use the following form to LogIn.
+            If you don't have an account
+            <a href="{% url 'register_user' %}"><strong>Register here</strong></a>
+        </p>
     </form>
 </div>
 {% endblock %}
