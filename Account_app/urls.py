@@ -33,5 +33,8 @@ urlpatterns = [
     path('', views.dashboard, name='dashboard'),
 
     # register user url
-    path('register/',views.register_user,name='register_user'),
+    path('register/', views.register_user, name='register_user'),
+
+    # edit user profile
+    path('edit/', views.edit, name='edit_user_profile'),
 ]
