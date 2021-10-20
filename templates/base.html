@@ -1,0 +1,45 @@
+{% load static %}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Messaging platform</title>
+    <title>{% block title %} {% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <meta name="google" content="notranslate"/>
+    <link href="{% static 'account.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous"/>
+</head>
+<body>
+<div id="header">
+    <span class="logo">Bookmarks</span>
+    {% if request.user.is_authenticated %}
+    <ul class="menu">
+        <li {% if section == "dashboard" %}class="selected" {% endif %}>
+        <a href="{% url 'dashboard' %}">My dashboard</a>
+        </li>
+<li {% if section == "images" %} class="selected"{% endif %}>
+        <a href="#">Images</a>
+        </li>
+        <li {% if section == "people" %} class="selected"{% endif %}>
+            <a href="#">People</a>
+        </li>
+    </ul>
+    {% endif %}
+
+    <span class="user">
+        {% if request.user.is_authenticated %}
+        Hello {{ request.user.username }},
+        <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}">LogIn</a>
+        {% endif %}
+    </span>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
