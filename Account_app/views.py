@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -53,7 +54,7 @@ def register_user(request):
 
 
 @login_required
-def edit(request, template_name='account/edit.html'):
+def edit_user_profile(request, template_name='account/edit_user_profile.html'):
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user,
                                  data=request.POST)
@@ -63,9 +64,16 @@ def edit(request, template_name='account/edit.html'):
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile_form.save()
+            # display messages
+            messages.success(request, 'Profile updated '
+                                      'successfully')
+        else:
+            messages.error(request, 'Error updating your '
+                                    'profile')
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
             instance=request.user.profile)
-    context = {'user_form': user_form, 'profile_form': profile_form}
+    context = {'user_form': user_form,
+               'profile_form': profile_form}
     return render(request, template_name, context)
