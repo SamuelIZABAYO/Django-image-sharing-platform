@@ -25,7 +25,7 @@ urlpatterns = [
     path('account/', include('Account_app.urls')),
 
     # Adding social authentication
-    path('social-auth', include('social_django.urls', namespace='social'))
+    path('signin/', include('allauth.urls'))
 ]
 
 # serve static files in local development

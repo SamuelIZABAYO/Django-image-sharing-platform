@@ -40,19 +40,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # 3rd party
-    'social_django',
-    # 'djangosecure',
     'sslserver',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # social providers
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
 ]
 
 # Allow users to login with their email
 AUTHENTICATION_BACKENDS = [
+    # login with email
     'django.contrib.auth.backends.ModelBackend',
     'Account_app.authentication.EmailAuthBackend',
-]
 
+    # social authentication
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -158,8 +169,18 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Securing cookies
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+# To be set in development server only
+CORS_REPLACE_HTTPS_REFERER = False
+HOST_SCHEME = "http://"
+SECURE_PROXY_SSL_HEADER = None
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_HSTS_SECONDS = None
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+SECURE_FRAME_DENY = False
+
+# social authentication
+ACCOUNT_LOGOUT_ON_GET = True
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

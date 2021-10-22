@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load socialaccount %}
+
 {% block title %}Log-in{% endblock %}
 
 {% block content %}
@@ -27,5 +29,22 @@
             <a href="{% url 'register_user' %}"><strong>Register here</strong></a>
         </p>
     </form>
+</div>
+
+<div>
+    <ul>
+        <li>
+            <a href="{% provider_login_url 'github' %}" class="btn btn-secondary">
+                <i class="fa fa-github" aria-hidden="true"></i>
+                <span>Login with GitHub</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% provider_login_url 'google' %}" class="btn">
+                <i class="fa fa-google fa-fw"></i>
+                <span>Login With Google</span>
+            </a>
+        </li>
+    </ul>
 </div>
 {% endblock %}
