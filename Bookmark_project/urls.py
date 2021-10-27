@@ -22,10 +22,13 @@ app_name = 'account'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # apps
     path('account/', include('Account_app.urls')),
+    path('image/', include('Image_app.urls')),
 
     # Adding social authentication
-    path('signin/', include('allauth.urls'))
+    path('signin/', include('allauth.urls')),
 ]
 
 # serve static files in local development

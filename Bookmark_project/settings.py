@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
     # local
     'Account_app.apps.AccountAppConfig',
+    'Image_app.apps.ImageAppConfig',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -170,16 +171,16 @@ EMAIL_USE_TLS = True
 
 # Securing cookies
 # To be set in development server only
-CORS_REPLACE_HTTPS_REFERER = False
-HOST_SCHEME = "http://"
-SECURE_PROXY_SSL_HEADER = None
-SECURE_SSL_REDIRECT = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SECURE = False
-SECURE_HSTS_SECONDS = None
-SECURE_HSTS_INCLUDE_SUBDOMAINS = False
-SECURE_FRAME_DENY = False
-
+# CORS_REPLACE_HTTPS_REFERER = False
+# HOST_SCHEME = "http://"
+# SECURE_PROXY_SSL_HEADER = None
+# SECURE_SSL_REDIRECT = False
+# SESSION_COOKIE_SECURE = False
+# CSRF_COOKIE_SECURE = False
+# SECURE_HSTS_SECONDS = None
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+# SECURE_FRAME_DENY = False
+FILE_UPLOAD_PERMISSIONS = 0o644
 # social authentication
 ACCOUNT_LOGOUT_ON_GET = True
 
