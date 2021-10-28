@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .forms import ImageCreatedForm
+from .models import Image
 
 
 @login_required
@@ -22,3 +23,10 @@ def image_create(request, template_name='images/image/create.html'):
                   template_name,
                   {'section': 'image',
                    'form': form})
+
+
+def image_detail(request, id, slug,
+                 template_name='images/image/image_detail.html'):
+    single_image = Image.objects.get(id=id, slug=slug)
+    context = {'single_image': single_image}
+    return render(request, template_name, context)

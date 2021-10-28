@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'easy_thumbnails',
 
     # social providers
     'allauth.socialaccount.providers.google',
@@ -180,7 +181,7 @@ EMAIL_USE_TLS = True
 # SECURE_HSTS_SECONDS = None
 # SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 # SECURE_FRAME_DENY = False
-FILE_UPLOAD_PERMISSIONS = 0o644
+
 # social authentication
 ACCOUNT_LOGOUT_ON_GET = True
 

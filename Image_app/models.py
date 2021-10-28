@@ -1,6 +1,7 @@
 from autoslug import AutoSlugField
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class Image(models.Model):
@@ -23,6 +24,10 @@ class Image(models.Model):
                                         blank=True)
     created = models.DateField(auto_now_add=True, db_index=True)
 
+    def __str__(self):
+        return self.title
 
-def __str__(self):
-    return self.title
+    def get_absolute_url(self):
+        return reverse('image_detail',
+                       kwargs={'id': self.id,
+                               'slug': self.slug})
